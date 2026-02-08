@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="action_pay_order" model="ir.actions.act_window">
+        <field name="name">Pay Orders</field>
+        <field name="res_model">pay.order</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_pay_order_root"
+              name="Pay Orders"
+              sequence="10"/>
+
+    <menuitem id="menu_pay_order"
+              name="Pay Orders"
+              parent="menu_pay_order_root"
+              action="action_pay_order"
+              sequence="1"/>
+</odoo>

@@ -1,0 +1,6 @@
+<odoo>
+    <record id="group_pay_order_accountant" model="res.groups">
+        <field name="name">Pay Order Accountant</field>
+        <field name="category_id" ref="base.module_category_accounting"/>
+    </record>
+</odoo>

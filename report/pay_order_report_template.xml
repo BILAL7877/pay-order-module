@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+<template id="pay_order_report_template">
+<t t-call="web.external_layout">
+
+    <t t-set="o" t-value="doc"/>
+
+    <div class="page">
+
+        <!-- HEADER -->
+        <h2 style="text-align:center;">PAY ORDER</h2>
+
+        <table class="table table-sm">
+            <tr>
+                <td><strong>Order #:</strong> <t t-esc="o.name"/></td>
+                <td><strong>Date:</strong> <t t-esc="o.date"/></td>
+            </tr>
+            <tr>
+                <td><strong>Project:</strong> <t t-esc="o.project_id.name"/></td>
+                <td><strong>Stage:</strong> <t t-esc="o.stage_id.name"/></td>
+            </tr>
+        </table>
+
+        <!-- VENDOR INFO -->
+        <h4>Vendor Details</h4>
+        <table class="table table-sm">
+            <tr>
+                <td><strong>Vendor:</strong> <t t-esc="o.vendor_id.name"/></td>
+                <td><strong>Mobile:</strong> <t t-esc="o.vendor_mobile"/></td>
+            </tr>
+            <tr>
+                <td><strong>Bank:</strong> <t t-esc="o.vendor_bank_name"/></td>
+                <td><strong>Account #:</strong> <t t-esc="o.vendor_account_number"/></td>
+            </tr>
+        </table>
+
+        <!-- LINES TABLE -->
+        <h4>Items</h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Description</th>
+                    <th>Unit</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <t t-foreach="o.line_ids" t-as="l">
+                    <tr>
+                        <td><t t-esc="l.sequence"/></td>
+                        <td><t t-esc="l.description"/></td>
+                        <td><t t-esc="l.uom_id.name"/></td>
+                        <td><t t-esc="l.quantity"/></td>
+                        <td><t t-esc="l.price_unit"/></td>
+                        <td><t t-esc="l.line_total"/></td>
+                    </tr>
+                </t>
+            </tbody>
+        </table>
+
+        <h4 style="text-align:right;">Total: <t t-esc="o.total_amount"/></h4>
+
+        <!-- NOTES -->
+        <h4>Progress Notes</h4>
+        <p><t t-esc="o.progress_notes"/></p>
+
+        <!-- APPROVALS -->
+        <table class="table table-sm" style="margin-top:40px;">
+            <tr>
+                <td><strong>Site Engineer</strong></td>
+                <td><strong>Project Engineer</strong></td>
+                <td><strong>CFO</strong></td>
+            </tr>
+            <tr>
+                <td><t t-esc="o.site_engineer_name"/></td>
+                <td><t t-esc="o.project_engineer_name"/></td>
+                <td><t t-esc="o.cfo_approved_by.name"/></td>
+            </tr>
+        </table>
+
+    </div>
+
+</t>
+</template>
+
+</odoo>
